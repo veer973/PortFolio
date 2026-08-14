@@ -1,0 +1,85 @@
+{
+  "programming_languages": [
+    "Python - Intermediate",
+    "JavaScript (ES6+) - Intermediate",
+    "SQL - Beginner/Intermediate",
+    "HTML5 - Intermediate",
+    "CSS3 - Intermediate"
+  ],
+  "frontend_development": [
+    "React.js (React 19) - Intermediate",
+    "JSX",
+    "React Hooks",
+    "React Router",
+    "Context API",
+    "Redux Toolkit",
+    "DOM Manipulation",
+    "Event Handling",
+    "Fetch API",
+    "Responsive Web Design",
+    "Flexbox",
+    "CSS Grid",
+    "CSS Animations",
+    "Tailwind CSS",
+    "Bootstrap"
+  ],
+  "backend_development": [
+    "Node.js - Beginner/Intermediate",
+    "Express.js - Beginner/Intermediate",
+    "REST API Development",
+    "CRUD Operations",
+    "Routing",
+    "Middleware",
+    "JSON",
+    "API Integration"
+  ],
+  "databases": [
+    "MongoDB - Beginner/Intermediate",
+    "SQL - Beginner/Intermediate",
+    "NoSQL Database Concepts",
+    "Database Integration with Node.js/Express.js"
+  ],
+  "full_stack_development": [
+    "MERN Stack (MongoDB, Express.js, React.js, Node.js) - Intermediate",
+    "Next.js - Beginner/Intermediate",
+    "Full-Stack Application Development",
+    "Frontend-Backend Integration"
+  ],
+  "authentication_and_integration": [
+    "JWT Authentication",
+    "bcrypt Password Hashing",
+    "Protected Routes",
+    "Authentication Middleware",
+    "Third-Party API Integration",
+    "Razorpay Payment Gateway Integration"
+  ],
+  "state_management": [
+    "React State",
+    "Context API",
+    "useReducer",
+    "Redux Toolkit",
+    "Redux Store",
+    "Slices",
+    "useSelector",
+    "useDispatch"
+  ],
+  "development_tools": [
+    "Git - Intermediate",
+    "GitHub - Intermediate",
+    "npm - Intermediate",
+    "VS Code - Advanced"
+  ],
+  "other_technical_skills": [
+    "Asynchronous JavaScript",
+    "Promises",
+    "async/await",
+    "API Consumption",
+    "REST Architecture",
+    "Dynamic Routing",
+    "Form Handling",
+    "Browser APIs",
+    "Object-Oriented JavaScript",
+    "Version Control",
+    "Responsive UI Development"
+  ]
+}

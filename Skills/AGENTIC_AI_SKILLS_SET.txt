@@ -1,0 +1,91 @@
+{
+  "agentic_ai": [
+    "Agentic AI",
+    "AI Agents",
+    "Agent architectures",
+    "Agent workflows",
+    "Agent planning",
+    "Tool-using agents",
+    "Stateful agents",
+    "Autonomous workflows",
+    "Human-in-the-loop agents",
+    "Agent memory",
+    "Agent persistence",
+    "Agent observability"
+  ],
+  "langgraph": [
+    "LangGraph",
+    "StateGraph",
+    "Nodes",
+    "Edges",
+    "Conditional edges",
+    "State management",
+    "Sequential workflows",
+    "Parallel workflows",
+    "Conditional workflows",
+    "Iterative workflows",
+    "Cyclic workflows",
+    "Chatbots",
+    "Persistence",
+    "Checkpointing",
+    "Time Travel",
+    "Streaming",
+    "Tools",
+    "Subgraphs",
+    "Memory"
+  ],
+  "memory": [
+    "Short-term memory",
+    "Long-term memory",
+    "Persistent memory",
+    "Conversational memory",
+    "Stateful conversations"
+  ],
+  "agent_integrations": [
+    "Streamlit + LangGraph",
+    "SQLite + LangGraph",
+    "LangSmith + LangGraph",
+    "MCP Client + LangGraph"
+  ],
+  "observability": [
+    "LangSmith",
+    "Agent tracing",
+    "Workflow tracing",
+    "Execution monitoring",
+    "Debugging",
+    "LLM/Agent observability"
+  ],
+  "human_in_the_loop": [
+    "HITL",
+    "Human approval",
+    "Human intervention",
+    "Pausable/resumable workflows"
+  ],
+  "rag": [
+    "RAG",
+    "RAG with LangGraph",
+    "Agentic RAG",
+    "Corrective RAG",
+    "CRAG",
+    "Self-RAG",
+    "Self-reflective RAG",
+    "Retrieval evaluation",
+    "Retrieval correction",
+    "Fact-checking",
+    "Self-correction"
+  ],
+  "ai_applications": [
+    "LangGraph chatbots",
+    "Streamlit AI applications",
+    "Research agents",
+    "Blog-writing agents",
+    "Database-backed chatbots",
+    "Agentic RAG applications"
+  ],
+  "protocol_and_tooling": [
+    "MCP",
+    "MCP Client",
+    "Tool calling",
+    "External tool integration"
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "programming": [
+    "Python",
+    "Object-Oriented Programming (Python)",
+    "Virtual Environments (venv)",
+    "Environment Variables (.env)",
+    "Package Management (pip)"
+  ],
+  "generative_ai": [
+    "Generative AI",
+    "Large Language Models (LLMs)",
+    "Generative AI Application Development",
+    "Open-source LLMs",
+    "Closed-source LLMs",
+    "LLM APIs",
+    "AI Application Architecture",
+    "Context Window Management",
+    "Token Usage",
+    "Temperature & Model Parameters",
+    "Chat-based AI Systems"
+  ],
+  "langchain": {
+    "core_components": [
+      "LangChain Framework",
+      "LangChain Expression Language (LCEL)",
+      "LangChain Components",
+      "Runnable Architecture",
+      "Model Agnostic Development",
+      "Chain Composition",
+      "Sequential Chains",
+      "Parallel Chains",
+      "Conditional Chains",
+      "End-to-End LLM Pipelines"
+    ],
+    "models": [
+      "Chat Models",
+      "Language Models",
+      "Embedding Models",
+      "Model Invocation",
+      "Model Switching",
+      "Multi-provider Integration",
+      "OpenAI Integration",
+      "Anthropic Integration",
+      "HuggingFace Integration",
+      "Ollama Integration"
+    ],
+    "prompt_engineering": [
+      "Prompt Engineering",
+      "PromptTemplate",
+      "ChatPromptTemplate",
+      "System Messages",
+      "Human Messages",
+      "AI Messages",
+      "Dynamic Prompts",
+      "Role-based Prompting",
+      "Few-shot Prompting",
+      "Prompt Variables",
+      "Prompt Chaining",
+      "Prompt Reusability"
+    ],
+    "messages": [
+      "HumanMessage",
+      "AIMessage",
+      "SystemMessage",
+      "Chat History",
+      "MessagesPlaceholder",
+      "Conversation Management"
+    ],
+    "output_handling": [
+      "Structured Output Generation",
+      "Pydantic Models",
+      "TypedDict",
+      "JSON Schema",
+      "with_structured_output()",
+      "Output Parsers",
+      "StrOutputParser",
+      "JsonOutputParser",
+      "StructuredOutputParser",
+      "PydanticOutputParser"
+    ],
+    "memory": [
+      "ConversationBufferMemory",
+      "ConversationBufferWindowMemory",
+      "Summary Memory",
+      "Custom Memory",
+      "Stateless vs Stateful LLM Applications"
+    ]
+  },
+  "embeddings": [
+    "Text Embeddings",
+    "Vector Representation",
+    "Semantic Similarity",
+    "Embedding Generation",
+    "Embedding Models",
+    "Vector Search Concepts"
+  ],
+  "rag": [
+    "Retrieval Augmented Generation (RAG)",
+    "RAG Architecture",
+    "Indexing",
+    "Retrieval",
+    "Augmentation",
+    "Generation",
+    "Document Loaders",
+    "Text Splitters",
+    "Chunking",
+    "Embedding Pipelines",
+    "Semantic Search",
+    "Retrieval Pipelines",
+    "Context Injection",
+    "Knowledge-based Chatbots",
+    "PDF Question Answering"
+  ],
+  "vector_databases": [
+    "Vector Stores",
+    "Similarity Search",
+    "Semantic Retrieval",
+    "Document Indexing",
+    "Document Processing",
+    "PDF Loading",
+    "Text Chunking",
+    "Document Splitting",
+    "Knowledge Base Creation"
+  ],
+  "ai_agents": [
+    "AI Agents",
+    "Tool Calling Concepts",
+    "Agent Reasoning",
+    "External Tool Integration",
+    "API-based Agents",
+    "Workflow Automation",
+    "Multi-step Reasoning"
+  ],
+  "hugging_face": [
+    "Hugging Face Models",
+    "Hugging Face Inference API",
+    "HuggingFaceEndpoint",
+    "HuggingFace Embeddings"
+  ],
+  "ollama": [
+    "Local LLM Deployment",
+    "Running Open-source Models Locally"
+  ],
+  "openai": [
+    "OpenAI API",
+    "ChatOpenAI",
+    "GPT Model Integration"
+  ],
+  "anthropic": [
+    "Claude API",
+    "ChatAnthropic"
+  ],
+  "application_development": [
+    "LLM Chatbots",
+    "Research Assistant",
+    "Prompt Playground",
+    "Document Question Answering",
+    "AI-powered Text Generation Applications"
+  ],
+  "development_tools": [
+    "VS Code",
+    "Streamlit",
+    "dotenv",
+    "Git",
+    "Windows Development Environment"
+  ],
+  "python_libraries": [
+    "langchain",
+    "langchain-core",
+    "langchain-openai",
+    "langchain-anthropic",
+    "langchain-google-genai",
+    "langchain-huggingface",
+    "pydantic",
+    "streamlit",
+    "python-dotenv"
+  ]
+}

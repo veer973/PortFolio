@@ -1,0 +1,594 @@
+# Enterprise Knowledge Intelligence Platform
+
+## Project Type
+
+Enterprise Generative AI / Retrieval-Augmented Generation (RAG) Platform
+
+## One-Line Description
+
+A multi-document enterprise AI assistant that uses Retrieval-Augmented Generation to understand private company documents and provide source-grounded answers through natural-language conversations.
+
+## Project Overview
+
+The Enterprise Knowledge Intelligence Platform is an internal AI assistant designed to help employees interact with private organizational knowledge using natural language.
+
+Companies often have important information distributed across:
+
+* HR policies
+* Employee handbooks
+* Product manuals
+* Technical documentation
+* Project reports
+* Standard operating procedures
+* Internal knowledge-base documents
+* PDFs and other company documents
+
+Instead of manually searching through large collections of documents, users can upload enterprise documents and ask questions conversationally.
+
+The system retrieves relevant information from the organization's private knowledge base and provides an answer grounded in the retrieved document content.
+
+## Core Problem
+
+Enterprise knowledge is often fragmented across large numbers of documents.
+
+Traditional document search requires users to:
+
+* Know which document contains the information
+* Search using exact keywords
+* Read large sections of documents
+* Manually compare information across documents
+* Repeat the process whenever they have a new question
+
+The platform provides a natural-language interface over this knowledge.
+
+Example:
+
+User:
+
+"What is the company's work-from-home policy?"
+
+The system:
+
+1. Processes the user's question.
+2. Performs semantic retrieval against indexed enterprise documents.
+3. Identifies the most relevant document chunks.
+4. Supplies those chunks to the LLM as context.
+5. Generates a grounded response.
+6. Provides the relevant source information.
+
+## Main Objective
+
+Build an enterprise-oriented RAG system capable of:
+
+* Processing multiple private documents
+* Extracting document content
+* Splitting documents into meaningful chunks
+* Generating embeddings
+* Storing vector representations
+* Performing semantic retrieval
+* Supplying retrieved context to an LLM
+* Generating grounded answers
+* Providing source references
+* Maintaining conversation context
+* Supporting structured responses
+* Providing a simple interactive interface
+
+# RAG Architecture
+
+The core architecture follows four major stages:
+
+## 1. Indexing
+
+Enterprise documents are uploaded to the application.
+
+Document:
+
+PDF / Company Document
+↓
+Document Loader
+↓
+Text Extraction
+↓
+Text Splitting / Chunking
+↓
+Embeddings
+↓
+Vector Store
+
+The indexing pipeline converts unstructured enterprise documents into searchable vector representations.
+
+## 2. Retrieval
+
+When a user asks a question, the question is converted into an embedding and compared against the indexed document vectors.
+
+User Question
+↓
+Question Embedding
+↓
+Semantic Similarity Search
+↓
+Relevant Document Chunks
+
+The system retrieves the most relevant sections instead of sending entire documents to the LLM.
+
+## 3. Augmentation
+
+The retrieved document chunks are inserted into the LLM prompt as contextual information.
+
+User Question
++
+Retrieved Context
++
+Prompt Instructions
+↓
+Augmented Prompt
+
+This gives the model relevant enterprise knowledge before generation.
+
+## 4. Generation
+
+The augmented prompt is passed to the selected chat model/LLM.
+
+Augmented Prompt
+↓
+LLM
+↓
+Grounded Answer
++
+Source Information
+
+The goal is to generate responses based on retrieved enterprise knowledge rather than relying solely on the model's pretrained knowledge.
+
+# Complete Data Flow
+
+Company Documents
+↓
+Document Loader
+↓
+Text Extraction
+↓
+Text Chunking
+↓
+Embedding Model
+↓
+Vector Store
+↓
+User Question
+↓
+Question Embedding
+↓
+Semantic Retrieval
+↓
+Relevant Chunks
+↓
+Prompt Template
+↓
+Retrieved Context + User Question
+↓
+Chat Model / LLM
+↓
+Generated Answer
+↓
+Source References
+
+# Document Ingestion
+
+The platform accepts enterprise documents and processes them before they become searchable.
+
+The ingestion pipeline includes:
+
+* Document loading
+* Text extraction
+* Text splitting
+* Chunk creation
+* Embedding generation
+* Vector indexing
+
+Chunking prevents entire documents from being passed to the LLM and allows retrieval to operate at a more useful level of granularity.
+
+# Embeddings
+
+The platform converts document chunks into numerical vector representations using embedding models.
+
+Conceptually:
+
+Document Chunk
+↓
+Embedding Model
+↓
+Vector Representation
+
+When a user asks a question:
+
+Question
+↓
+Embedding Model
+↓
+Question Vector
+
+The question vector is then compared with indexed document vectors to identify semantically relevant content.
+
+This enables semantic search rather than relying exclusively on keyword matching.
+
+# Vector Search
+
+The vector store acts as the searchable knowledge layer of the application.
+
+The retrieval process identifies document chunks that are semantically related to the user's question.
+
+Example:
+
+User asks:
+
+"What are the rules for employees working remotely?"
+
+The system can retrieve a section containing:
+
+"Employees may work remotely up to two days per week with manager approval."
+
+This can happen even if the user's wording does not exactly match the wording used in the document.
+
+# Prompt Engineering
+
+Prompt templates are used to construct the final LLM request.
+
+The prompt combines:
+
+* System instructions
+* Retrieved document context
+* User question
+* Conversation context when applicable
+
+Conceptually:
+
+System Instructions
++
+Retrieved Context
++
+Conversation History
++
+Current Question
+↓
+LLM Prompt
+
+The prompt is designed to encourage grounded responses based on the retrieved enterprise information.
+
+# Source-Grounded Answers
+
+A major feature is source attribution.
+
+Instead of returning only:
+
+"Employees can work remotely two days per week."
+
+The application can associate the answer with the document content used to generate it.
+
+This improves:
+
+* Answer traceability
+* User trust
+* Knowledge verification
+* Enterprise usability
+
+The portfolio should emphasize that the system is designed to provide **grounded answers with source references**, rather than presenting unsupported LLM responses as facts.
+
+# Conversation Memory
+
+The platform supports conversational interactions instead of treating every question as an isolated request.
+
+Example:
+
+User:
+
+"What is the company's work-from-home policy?"
+
+Assistant:
+
+"The policy allows eligible employees to work remotely up to two days per week."
+
+User:
+
+"Does that require approval?"
+
+The system can use the previous conversation context to understand what "that" refers to.
+
+Conversation memory therefore allows users to interact with the knowledge base naturally across multiple turns.
+
+# Structured Output
+
+The application can use structured output techniques where predictable response formats are required.
+
+Structured responses can be useful when the application needs information such as:
+
+* Answer
+* Sources
+* Confidence/context information
+* Retrieved documents
+* Metadata
+
+Structured output makes downstream processing more reliable than relying entirely on free-form text.
+
+# Model Integration
+
+The platform is designed around LLM APIs and chat-model abstractions.
+
+The architecture can support model selection/switching rather than tightly coupling the application to a single model provider.
+
+This allows the application to experiment with different LLMs while keeping the core RAG pipeline largely independent from the generation model.
+
+Do not claim specific model providers or models as implemented unless they were actually used in the project.
+
+# LangChain Architecture
+
+LangChain is used as the primary framework for constructing the GenAI pipeline.
+
+Relevant concepts demonstrated include:
+
+* LangChain
+* LCEL
+* Prompt Templates
+* Document Loaders
+* Text Splitters
+* Embeddings
+* Vector Stores
+* Retrievers
+* Chat Models
+* Structured Output
+* Conversation Memory
+* LLM APIs
+
+LCEL can be used to compose the retrieval and generation pipeline into a clear sequence of operations.
+
+Conceptually:
+
+Retriever
+↓
+Prompt
+↓
+Chat Model
+↓
+Output
+
+This allows the individual components to be composed into reusable chains.
+
+# Application Interface
+
+The application provides an interactive Streamlit interface.
+
+Users can:
+
+* Upload enterprise documents
+* Interact with the knowledge base
+* Ask questions in natural language
+* View generated answers
+* Inspect source information
+* Continue conversations
+* Interact with the selected model configuration where supported
+
+Streamlit provides the application layer while the RAG pipeline handles document processing, retrieval, and generation.
+
+# Example Workflow
+
+## Document Indexing
+
+An HR administrator uploads:
+
+`Employee_Handbook.pdf`
+
+The system:
+
+PDF
+↓
+Text Extraction
+↓
+Chunking
+↓
+Embeddings
+↓
+Vector Store
+
+The document is now part of the enterprise knowledge base.
+
+## User Query
+
+Employee asks:
+
+"What is the company's remote work policy?"
+
+The system:
+
+Question
+↓
+Question Embedding
+↓
+Vector Search
+↓
+Relevant HR policy chunks
+↓
+Prompt with retrieved context
+↓
+LLM
+↓
+Grounded answer
+↓
+Source reference
+
+## Follow-Up Question
+
+Employee:
+
+"Does my manager need to approve it?"
+
+The application uses conversation context along with retrieval to understand the follow-up question and produce a relevant answer.
+
+# Example Enterprise Use Cases
+
+The platform can support internal knowledge scenarios such as:
+
+### HR
+
+"What is the company's leave policy?"
+
+### IT
+
+"How do I request access to the production environment?"
+
+### Product
+
+"What are the supported features of Product X?"
+
+### Engineering
+
+"What is the deployment procedure?"
+
+### Operations
+
+"What is the standard process for handling this issue?"
+
+### Compliance
+
+"What does the internal SOP say about this process?"
+
+These are examples of the type of enterprise knowledge the platform is designed to handle.
+
+# Technical Architecture
+
+The application can be represented as:
+
+User
+↓
+Streamlit Interface
+↓
+Question Processing
+↓
+Retriever
+↓
+Vector Store
+↓
+Relevant Document Chunks
+↓
+Prompt Template
+↓
+Chat Model / LLM
+↓
+Generated Response
+↓
+Sources
+
+The document indexing pipeline runs separately:
+
+Documents
+↓
+Document Loader
+↓
+Text Splitter
+↓
+Embedding Model
+↓
+Vector Store
+
+# Key Engineering Concepts
+
+The project demonstrates practical Generative AI engineering concepts including:
+
+* Retrieval-Augmented Generation
+* Multi-document ingestion
+* Semantic search
+* Vector embeddings
+* Vector retrieval
+* Prompt engineering
+* Context augmentation
+* LLM generation
+* Source attribution
+* Conversational memory
+* Structured output
+* Model abstraction
+* LangChain
+* LCEL
+* Streamlit
+* Document processing
+
+# Why This Is More Than a PDF Chatbot
+
+Do not position this project as:
+
+"Built a chatbot that answers questions from PDFs."
+
+That description significantly undersells the project.
+
+The stronger description is:
+
+"Built a multi-document enterprise knowledge intelligence platform using RAG to index private organizational documents, perform semantic retrieval, augment LLM prompts with relevant context, and generate source-grounded conversational responses."
+
+The distinction is that the project demonstrates an end-to-end **knowledge retrieval and generation architecture**, not simply a chat interface over a single PDF.
+
+# Engineering Challenges
+
+Important technical challenges demonstrated by the project include:
+
+## Reducing LLM Hallucination
+
+The system retrieves relevant enterprise content and supplies it to the LLM as context so that responses can be grounded in the organization's documents.
+
+## Handling Large Documents
+
+Documents are split into smaller chunks before embedding and retrieval, making semantic search more practical and reducing unnecessary context sent to the model.
+
+## Semantic Retrieval
+
+Embedding-based retrieval allows the application to identify relevant information based on meaning rather than exact keyword matches.
+
+## Maintaining Context
+
+Conversation memory allows follow-up questions to be interpreted in the context of previous interactions.
+
+## Source Traceability
+
+Source information can be returned alongside generated answers so users can verify where the information originated.
+
+# Portfolio Positioning
+
+Present this project as an **Enterprise Generative AI / RAG application**.
+
+The portfolio should emphasize:
+
+1. The enterprise knowledge problem.
+2. Multi-document ingestion.
+3. The four-stage RAG architecture.
+4. Semantic retrieval using embeddings.
+5. Context augmentation.
+6. Source-grounded generation.
+7. Conversational memory.
+8. Structured output.
+9. LangChain and LCEL.
+10. Streamlit application architecture.
+
+The portfolio should visually explain the RAG pipeline because the architecture is one of the strongest parts of the project.
+
+# Resume-Style Summary
+
+Enterprise Knowledge Intelligence Platform — Multi-document RAG System
+
+Built a multi-document enterprise RAG platform that enables users to query private company documents using natural language. Developed document ingestion, text chunking, embedding, semantic retrieval, prompt augmentation, and LLM generation pipelines using LangChain and LCEL. Added source-grounded responses, conversational memory, structured outputs, and an interactive Streamlit interface for enterprise knowledge search and question answering.
+
+# Portfolio AI Instructions
+
+When generating the portfolio page:
+
+* Present the project as an Enterprise Knowledge Intelligence Platform.
+* Do not describe it merely as a PDF chatbot.
+* Explain the complete RAG architecture using the four stages: Indexing, Retrieval, Augmentation, and Generation.
+* Explain what happens to documents before they become searchable.
+* Explain how embeddings enable semantic retrieval.
+* Explain how retrieved chunks become context for the LLM.
+* Explain how source-grounded answers improve traceability.
+* Highlight conversational memory and follow-up questions.
+* Highlight structured output where applicable.
+* Highlight LangChain and LCEL as orchestration technologies.
+* Highlight Streamlit as the application interface.
+* Explain the practical enterprise use cases.
+* Do not invent benchmark scores, accuracy percentages, latency numbers, document counts, user counts, or deployment infrastructure.
+* Do not claim specific vector databases, LLM providers, embedding models, authentication systems, access-control systems, or cloud services unless they were actually implemented.
+* Do not claim features as implemented if they were only planned.
+* Keep the technical explanation understandable to recruiters while retaining enough depth for technical interviewers.
+* Focus on architecture and engineering decisions rather than generic explanations of what AI or RAG is.

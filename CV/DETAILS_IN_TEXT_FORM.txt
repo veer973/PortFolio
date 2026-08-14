@@ -1,0 +1,15 @@
+{
+  "full_name": "VEERAJ H. BAGMAR",
+  "description": "Final-year CS student driven by a constant itch to build, test, and learn new things. I love taking ideas from an empty terminal to a deployed app—currently deep into Full-Stack development, Gen AI, and pushing the limits of Agentic AI. For me, the best part of software engineering is that there’s always a fresh challenge or tool to master. I thrive on breaking things down to figure them out and shipping code that actually makes a difference."
+  "email": "veeajbagmar2005@gmail.com",
+"portfolio positioning" : "Full-Stack Developer | AI Engineer"
+  "github": "https://github.com/veer973",
+  "linkedin": "https://www.linkedin.com/in/veeraj-h-bagmar-795806412?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+  "current_location": "Chennai, Tamil Nadu",
+  "home_location": "Nagpur, Maharashtra",
+  "phone_number": "8446182258",
+  "education": "Vellore Institute of Technology Chennai",
+"CGPA":"8.09",
+"Relevant Course Work" : "ArƟficial Intelligence, Data Structures & Algorithms, Computer Networks,
+OperaƟng Systems, DBMS, Cloud CompuƟng, SoŌware Engineering"
+}

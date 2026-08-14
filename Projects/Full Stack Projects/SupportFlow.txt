@@ -1,0 +1,371 @@
+# SupportFlow
+
+## Project Type
+
+Multi-Tenant Customer Support & SLA Management Platform
+
+## One-Line Description
+
+A full-stack customer support platform that centralizes ticket management, role-based access control, SLA tracking, agent assignment, customer communication, audit logging, and support analytics.
+
+## Problem
+
+Small and medium-sized businesses often manage customer issues through disconnected channels such as email, spreadsheets, WhatsApp, and separate communication tools. This makes ticket ownership, response times, SLA compliance, and support performance difficult to track.
+
+SupportFlow centralizes the complete support workflow into a single platform:
+
+Customer → Ticket → Agent → SLA → Resolution → Analytics
+
+## Target Users
+
+### Customer
+
+* Register and authenticate
+* Create support tickets
+* View ticket history
+* Track ticket status
+* Reply to tickets
+* Search and filter their tickets
+
+### Support Agent
+
+* View assigned/team tickets
+* Accept and assign tickets
+* Change ticket priority
+* Update ticket status
+* Respond to customers
+* Add internal notes
+* Track SLA deadlines
+* Search customers
+* Filter and manage ticket queues
+
+### Administrator
+
+* Manage users and support agents
+* Assign agents and departments
+* Configure ticket priorities and SLA policies
+* Monitor ticket activity
+* Monitor SLA performance
+* View support analytics
+* Manage departments
+* Review system audit logs
+
+## Core Features
+
+### Ticket Management
+
+Tickets follow a controlled business workflow:
+
+OPEN → ASSIGNED → IN_PROGRESS → WAITING_FOR_CUSTOMER → RESOLVED → CLOSED
+
+Closed tickets can be reopened and moved back into the active workflow.
+
+Every significant ticket transition is recorded for traceability.
+
+### Role-Based Access Control
+
+The platform implements RBAC with three primary roles:
+
+* Customer
+* Support Agent
+* Administrator
+
+Authorization is enforced on the backend rather than relying on frontend restrictions.
+
+Customers can access only their own tickets, agents can access tickets within their assigned scope, and administrators have system-wide management capabilities.
+
+### SLA Management
+
+Different ticket priorities have different response and resolution targets.
+
+Example SLA policies:
+
+* Critical: 15-minute response / 2-hour resolution
+* High: 30-minute response / 4-hour resolution
+* Medium: 2-hour response / 12-hour resolution
+* Low: 8-hour response / 48-hour resolution
+
+The backend tracks timestamps such as:
+
+* createdAt
+* firstResponseAt
+* resolvedAt
+* responseDeadline
+* resolutionDeadline
+
+The system calculates SLA performance and classifies tickets as within SLA, at risk, or breached.
+
+### Ticket Communication
+
+Customers and support agents can communicate through ticket-specific message threads.
+
+Agents can also add internal notes that are separate from customer-facing responses.
+
+### Advanced Ticket Search and Filtering
+
+Agents can combine multiple filters such as:
+
+* Status
+* Priority
+* Assigned agent
+* Department
+* Date range
+
+Filtering, sorting, and pagination are performed on the backend/database rather than loading large datasets into the frontend.
+
+### Audit Logging
+
+Important business actions generate audit records.
+
+Example:
+
+Ticket #1024
+
+* Customer created ticket
+* Admin assigned an agent
+* Agent changed priority from LOW to HIGH
+* Agent responded
+* Agent changed status from IN_PROGRESS to RESOLVED
+
+Audit logs record the user, action, affected entity, previous value, new value, and timestamp.
+
+### Analytics Dashboard
+
+Administrators can monitor support performance through metrics such as:
+
+* Total tickets
+* Open tickets
+* Resolved tickets
+* SLA breaches
+* Average resolution time
+* Tickets by priority
+* Tickets by status
+* Tickets by department
+* Tickets by agent
+* Ticket trends over time
+
+MongoDB aggregation pipelines are used to generate dashboard metrics.
+
+## Frontend Architecture
+
+Technology stack:
+
+* React.js
+* Next.js
+* Redux Toolkit
+* Tailwind CSS
+* JavaScript
+
+The frontend is organized around separate customer, agent, and administrator experiences.
+
+Global application state is managed using Redux Toolkit for areas such as authentication, tickets, users, agents, filters, and dashboard data.
+
+Component-specific state is handled locally within React components.
+
+## Backend Architecture
+
+Technology stack:
+
+* Node.js
+* Express.js
+* MongoDB
+* JWT
+* bcrypt
+
+Backend architecture follows a layered structure:
+
+Request
+→ Express Route
+→ Authentication Middleware
+→ Authorization Middleware
+→ Controller
+→ Service Logic
+→ MongoDB
+→ Response
+
+Business logic is separated from route handlers to keep the backend maintainable and scalable.
+
+## Database Design
+
+Primary MongoDB collections:
+
+* users
+* tickets
+* ticketMessages
+* departments
+* slaPolicies
+* auditLogs
+
+### Users
+
+Stores user identity, authentication information, role, department, and timestamps.
+
+### Tickets
+
+Stores ticket number, customer, assigned agent, department, title, description, priority, status, SLA information, resolution timestamps, and timestamps.
+
+### Ticket Messages
+
+Stores customer/agent conversations associated with tickets.
+
+### SLA Policies
+
+Stores response and resolution targets for different ticket priorities.
+
+### Audit Logs
+
+Stores historical records of important system and business-data changes.
+
+## REST API
+
+Representative endpoints:
+
+POST /api/auth/register
+POST /api/auth/login
+
+GET /api/tickets
+POST /api/tickets
+GET /api/tickets/:id
+PATCH /api/tickets/:id
+DELETE /api/tickets/:id
+
+POST /api/tickets/:id/messages
+GET /api/tickets/:id/messages
+
+GET /api/users
+PATCH /api/users/:id
+
+GET /api/dashboard/metrics
+GET /api/dashboard/sla
+
+The ticket API supports server-side filtering, sorting, and pagination.
+
+Example:
+
+GET /api/tickets?status=open&priority=high&page=1&limit=20
+
+## Authentication and Security
+
+Authentication uses JWT-based sessions with bcrypt password hashing.
+
+The backend uses:
+
+* JWT authentication
+* bcrypt password hashing
+* Authentication middleware
+* Role-based authorization middleware
+* Server-side input validation
+* Restricted ticket access
+* Restricted administrative APIs
+* Audit logging
+* Environment variables for secrets and configuration
+
+The backend never trusts user IDs, roles, or permissions supplied by the frontend.
+
+Authorization is independently verified for every protected operation.
+
+## Performance and Scalability
+
+The application uses MongoDB indexes based on real query patterns.
+
+Important indexed fields include:
+
+* status
+* priority
+* assignedAgentId
+* customerId
+* createdAt
+
+Compound indexes can be used for frequent queries such as assigned agent + ticket status.
+
+Large ticket datasets are handled using:
+
+* Server-side pagination
+* Database-level filtering
+* Database-level sorting
+* MongoDB aggregation
+* Efficient query patterns
+
+The React frontend avoids unnecessary rendering and uses memoization only where it provides measurable benefit.
+
+## Engineering Highlights
+
+The project demonstrates practical backend and full-stack engineering concepts:
+
+* Multi-role RBAC
+* REST API architecture
+* JWT authentication
+* Secure password hashing
+* Business workflow modeling
+* SLA calculation
+* Ticket assignment
+* Audit logging
+* MongoDB indexing
+* MongoDB aggregation
+* Server-side filtering
+* Pagination
+* Search
+* Analytics
+* Layered backend architecture
+* Global state management with Redux Toolkit
+* Responsive frontend architecture
+* Centralized error handling
+* Environment-based configuration
+
+## Example Business Workflow
+
+A customer reports:
+
+"Payment was deducted but my order wasn't created."
+
+The system:
+
+1. Creates a support ticket.
+2. Assigns the appropriate priority.
+3. Calculates the SLA deadlines.
+4. Routes the ticket to the appropriate department/agent.
+5. Tracks customer and agent communication.
+6. Records status transitions.
+7. Tracks the first response.
+8. Records the resolution.
+9. Calculates SLA performance.
+10. Stores important actions in the audit log.
+11. Updates administrator analytics.
+
+## Portfolio Positioning
+
+Do not describe this project as a basic MERN CRUD application.
+
+The project should be presented as a production-oriented business support system focused on:
+
+* Business workflow automation
+* Multi-role access control
+* SLA-driven ticket management
+* Operational analytics
+* Secure REST APIs
+* Database performance
+* Auditability
+
+The strongest engineering story is the combination of business logic, RBAC, SLA management, database design, API architecture, and analytics rather than the number of technologies used.
+
+## Resume-Style Summary
+
+SupportFlow — Multi-Tenant Customer Support & SLA Management Platform
+
+Built a full-stack customer support platform with RBAC, ticket workflows, agent assignment, SLA tracking, customer communication, audit logging, and analytics. Developed REST APIs using Node.js and Express with JWT authentication, bcrypt password hashing, MongoDB indexing, aggregation, filtering, and pagination. Built role-specific interfaces using React, Next.js, Redux Toolkit, and Tailwind CSS for customers, support agents, and administrators.
+
+## Portfolio AI Instructions
+
+When generating the portfolio page for this project:
+
+* Present SupportFlow as a serious business/enterprise application.
+* Focus on the problem solved and engineering decisions.
+* Explain the architecture clearly.
+* Highlight RBAC, SLA management, audit logging, MongoDB indexing, aggregation, filtering, and pagination.
+* Show the ticket lifecycle as a business workflow.
+* Explain why backend authorization is necessary instead of relying on frontend role checks.
+* Highlight measurable or technical outcomes only when supported by actual project data.
+* Do not invent users, revenue, performance numbers, deployment platforms, integrations, or technologies that are not specified here.
+* Do not claim features were implemented if they are only described as future ideas.
+* Keep the final portfolio presentation concise, technical, and recruiter-friendly.
+* Prioritize actual engineering work over generic descriptions of React, Node.js, or MongoDB.

@@ -1,0 +1,64 @@
+{
+  "small_projects": [
+    {
+      "project_name": "Cheese Board",
+      "technologies": [
+        "HTML",
+        "CSS"
+      ],
+      "purpose": "Basic web application built to strengthen HTML and CSS fundamentals."
+    },
+    {
+      "project_name": "Instagram Clone",
+      "technologies": [
+        "HTML",
+        "CSS"
+      ],
+      "purpose": "Basic frontend clone built to practice layout, styling, and responsive UI concepts."
+    },
+    {
+      "project_name": "Netflix Clone",
+      "technologies": [
+        "HTML",
+        "CSS"
+      ],
+      "purpose": "Basic frontend clone built to practice webpage structure, styling, and UI design."
+    },
+    {
+      "project_name": "Image Changer",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "purpose": "Small interactive web application built to practice JavaScript DOM manipulation and event handling."
+    },
+    {
+      "project_name": "Movie Web App",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "purpose": "Small web application built to practice JavaScript, dynamic content rendering, and API-based functionality."
+    },
+    {
+      "project_name": "Food Recipe Web App",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "purpose": "Small interactive web application built to practice JavaScript, DOM manipulation, and dynamic recipe content."
+    },
+    {
+      "project_name": "Spotify Clone",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "purpose": "Small frontend application built to practice UI development, JavaScript interactions, and audio-related functionality."
+    }
+  ]
+}

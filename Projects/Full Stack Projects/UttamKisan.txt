@@ -1,0 +1,807 @@
+# UttamKissan
+
+## Project Type
+
+Smart Agriculture Marketplace & Autonomous Rover Rental Platform
+
+## One-Line Description
+
+A full-stack smart agriculture platform connecting farmers, agricultural retailers, laborers, and autonomous agricultural rovers through a unified digital ecosystem.
+
+## Project Overview
+
+UttamKissan combines three major systems into one platform:
+
+**Agricultural Marketplace + Labor Platform + Autonomous Rover Rental System**
+
+The platform enables farmers to purchase agricultural equipment and products, sell agricultural produce, find agricultural workers, rent autonomous agricultural rovers, schedule field operations, make online payments, and monitor rover operations.
+
+The platform serves four major user roles:
+
+* Farmer
+* Agricultural Retailer
+* Agricultural Laborer
+* Administrator
+
+## Problem
+
+Small and medium-scale farmers often deal with disconnected agricultural services.
+
+Common challenges include:
+
+* Difficulty accessing agricultural equipment
+* Difficulty finding agricultural labor
+* High cost of purchasing machinery
+* Difficulty selling agricultural produce
+* Limited access to agricultural automation technology
+
+UttamKissan brings these services into a single platform instead of requiring farmers to independently arrange equipment, workers, machinery, payments, and field operations.
+
+## Platform Ecosystem
+
+The core platform can be represented as:
+
+Farmer
+↓
+Marketplace + Labor + Rover Rental
+↓
+Products + Workers + Autonomous Rover
+↓
+Unified Agriculture Platform
+
+The project is designed as a connected agricultural ecosystem rather than a conventional e-commerce application.
+
+# User Roles
+
+## Farmer
+
+Farmers can:
+
+* Register and authenticate
+* Purchase agricultural equipment and products
+* Browse marketplace listings
+* Sell agricultural produce
+* Post labor requirements
+* Hire agricultural workers
+* Rent autonomous rovers
+* Schedule rover operations
+* Select compatible agricultural attachments
+* Track rover operations
+* View rental history
+* Manage payments
+
+## Agricultural Retailer
+
+Retailers can:
+
+* Register as retailers
+* List agricultural equipment and products
+* Manage inventory
+* Manage product pricing
+* Receive orders
+* View sales
+* Update product information
+
+## Agricultural Laborer
+
+Laborers can:
+
+* Create worker profiles
+* Specify agricultural skills
+* Browse available labor requirements
+* Apply for agricultural jobs
+* Manage accepted jobs
+
+## Administrator
+
+Administrators can:
+
+* Manage users
+* Manage products
+* Manage marketplace activity
+* Manage rover rentals
+* Monitor rover operations
+* Manage labor listings
+* Monitor transactions
+
+# Core Features
+
+## 1. Agricultural Marketplace
+
+Retailers can list agricultural products and equipment such as:
+
+* Seeders
+* Tillers
+* Sprayers
+* Agricultural tools
+* Farming equipment
+* Other agricultural products
+
+Farmers can:
+
+Browse → Search → Filter → View Product → Add to Cart → Checkout → Pay → Receive Order Confirmation
+
+The marketplace supports product management, inventory, orders, and online payments.
+
+## 2. Agricultural Produce Marketplace
+
+Farmers can also become sellers by listing agricultural goods.
+
+Example:
+
+Product: Wheat
+Quantity: 500 kg
+Price: ₹32/kg
+Availability: Available
+
+This allows the platform to support both retailer-to-farmer commerce and farmer-to-buyer agricultural product sales.
+
+## 3. Labor Requirement Platform
+
+Farmers can publish agricultural labor requirements.
+
+Example:
+
+Job: Harvesting
+Workers Required: 8
+Required Skill: Harvesting
+Duration: 2 days
+Location: Farm
+
+Workers can browse available jobs and submit applications.
+
+The workflow is:
+
+OPEN → APPLICATIONS → SELECTED → IN_PROGRESS → COMPLETED
+
+This creates a dedicated workforce-management component inside the agricultural platform.
+
+# Autonomous Rover Rental System
+
+## Main Differentiator
+
+The autonomous rover rental system is the feature that differentiates UttamKissan from a conventional marketplace application.
+
+Instead of simply listing an agricultural rover as a product, the platform treats the rover as a service that can be scheduled and rented for field operations.
+
+A farmer selects:
+
+Field
+↓
+Operation
+↓
+Attachment
+↓
+Date/Time
+↓
+Rental Duration
+↓
+Payment
+↓
+Rental Confirmation
+
+Example:
+
+Field: 2 acres
+Operation: Seeding
+Attachment: Seed Drill
+Date: 20 August
+Time: 08:00–11:00
+Rental Duration: 3 hours
+
+The platform then creates and manages the rover rental.
+
+## Rover Operations
+
+The rover can be used for agricultural operations such as:
+
+* Tilling
+* Land leveling
+* Seeding
+
+Compatible attachments include:
+
+* Tiller
+* Leveler
+* Seed Drill
+
+The platform connects the selected operation with the appropriate attachment and rover.
+
+## Rover Mission Workflow
+
+Farmer
+↓
+Login
+↓
+Select Rover
+↓
+Select Field
+↓
+Select Attachment
+↓
+Select Operation
+↓
+Select Date/Time
+↓
+Payment
+↓
+Rental Confirmed
+↓
+Rover Assigned
+↓
+Operation Started
+↓
+Telemetry Sent
+↓
+Dashboard Updated
+↓
+Operation Completed
+
+The software platform handles the digital mission orchestration while the autonomous rover performs the physical field operation.
+
+# Serpentine Navigation Visualization
+
+The rover uses a serpentine field-navigation pattern for agricultural operations.
+
+Conceptually:
+
+START
+→ → → → →
+← ← ← ← ←
+→ → → → →
+← ← ← ← ←
+END
+
+The web platform does not need to implement low-level motor control. Instead, it manages the agricultural mission and visualizes the rover's operational state.
+
+Example mission:
+
+Operation: SEEDING
+Field: Field #102
+Attachment: Seed Drill
+Path: SERPENTINE
+Status: RUNNING
+
+# Rover Monitoring
+
+The platform provides a rover monitoring interface showing information such as:
+
+* Rover ID
+* Current status
+* Current operation
+* Assigned field
+* Selected attachment
+* Progress
+* Current position
+* Speed
+* Battery level
+* Elapsed operation time
+
+Example:
+
+ROVER #RV-102
+Status: RUNNING
+Operation: SEEDING
+Field: Farmer Field #14
+Progress: 67%
+Speed: 2.1 km/h
+Battery: 74%
+
+## Rover Telemetry Architecture
+
+The rover periodically sends telemetry to the backend.
+
+Rover
+↓
+REST API
+↓
+Express.js
+↓
+MongoDB
+↓
+Next.js / React
+↓
+Farmer Dashboard
+
+Telemetry can include:
+
+* Rover ID
+* Rental ID
+* Latitude
+* Longitude
+* Speed
+* Battery level
+* Operation
+* Progress
+* Status
+* Timestamp
+
+The frontend retrieves the latest telemetry using the Fetch API and periodically updates the dashboard.
+
+Do not claim WebSockets or Socket.IO unless they were actually implemented.
+
+# Rental Scheduling and Availability
+
+The platform includes business-rule validation for rover reservations.
+
+A rover cannot be booked by two farmers for overlapping time periods.
+
+Example:
+
+Rover RV01
+09:00–12:00 → Farmer A
+12:30–15:30 → Farmer B
+
+This is valid.
+
+But:
+
+09:00–12:00 → Farmer A
+11:00–14:00 → Farmer B
+
+must be rejected because the reservations overlap.
+
+The backend checks existing reservations before confirming a rental.
+
+This demonstrates real scheduling and business-logic validation beyond simple CRUD operations.
+
+# Razorpay Payment Integration
+
+Razorpay is integrated for online payments.
+
+## Product Purchase
+
+Cart
+↓
+Checkout
+↓
+Razorpay
+↓
+Payment
+↓
+Order Confirmation
+
+## Rover Rental
+
+Select Rover
+↓
+Select Date
+↓
+Select Attachment
+↓
+Calculate Rental Cost
+↓
+Razorpay
+↓
+Rental Confirmation
+
+Payment information can include:
+
+* paymentId
+* orderId
+* amount
+* paymentStatus
+
+# Authentication and Authorization
+
+Authentication uses:
+
+* JWT
+* bcrypt
+* Role-based authorization
+
+Registration:
+
+User
+↓
+Password
+↓
+bcrypt hashing
+↓
+MongoDB
+
+Login:
+
+Email + Password
+↓
+bcrypt verification
+↓
+JWT generation
+↓
+Authenticated session
+
+Role permissions are enforced on the backend.
+
+Example:
+
+Farmer → Create rover rental
+Retailer → Create equipment listing
+Laborer → Apply for agricultural jobs
+Administrator → Manage the platform
+
+Frontend UI restrictions are not treated as security. Backend authorization verifies whether the authenticated user is allowed to access or modify a resource.
+
+# Frontend Technology
+
+Technology stack:
+
+* React.js
+* Next.js
+* Redux Toolkit
+* Tailwind CSS
+* JavaScript
+* Fetch API
+
+The application can be organized into role-specific areas:
+
+Frontend
+├── Authentication
+├── Farmer
+│   ├── Dashboard
+│   ├── Marketplace
+│   ├── Cart
+│   ├── Orders
+│   ├── Sell Products
+│   ├── Labor
+│   └── Rover
+├── Retailer
+│   ├── Dashboard
+│   ├── Products
+│   ├── Inventory
+│   └── Orders
+├── Laborer
+│   ├── Profile
+│   ├── Jobs
+│   └── Applications
+└── Admin
+├── Users
+├── Products
+├── Orders
+├── Rentals
+└── Rover Monitoring
+
+Redux Toolkit is used for global application state such as:
+
+* Authentication
+* Products
+* Cart
+* Orders
+* Rover state
+* Rentals
+* Labor requirements
+
+Rover state can include:
+
+* Status
+* Current position
+* Battery level
+* Progress
+* Current operation
+* Telemetry
+
+# Backend Technology
+
+Technology stack:
+
+* Node.js
+* Express.js
+* MongoDB
+* REST APIs
+
+Backend architecture:
+
+Routes
+↓
+Controllers
+↓
+Middleware
+↓
+Services
+↓
+Models
+↓
+MongoDB
+
+Typical request flow:
+
+Frontend
+↓
+REST API
+↓
+Express Route
+↓
+JWT Middleware
+↓
+Authorization
+↓
+Controller
+↓
+Business Logic
+↓
+MongoDB
+↓
+Response
+
+# Database Design
+
+Major MongoDB collections include:
+
+* users
+* products
+* orders
+* orderItems
+* cart
+* agriculturalListings
+* laborRequirements
+* laborApplications
+* rovers
+* attachments
+* rentals
+* telemetry
+* payments
+* auditLogs
+
+## Users
+
+Stores:
+
+* Name
+* Email
+* Password
+* Role
+* Creation timestamp
+
+Primary roles:
+
+* FARMER
+* RETAILER
+* LABORER
+* ADMIN
+
+## Products
+
+Stores:
+
+* Seller
+* Product name
+* Category
+* Price
+* Quantity
+* Description
+* Creation timestamp
+
+## Rovers
+
+Stores:
+
+* Rover ID
+* Status
+* Current operation
+* Attachment
+* Battery level
+
+## Rentals
+
+Stores:
+
+* Farmer
+* Rover
+* Attachment
+* Operation
+* Field
+* Start time
+* End time
+* Status
+* Payment status
+
+## Labor Requirements
+
+Stores:
+
+* Farmer
+* Job title
+* Required workers
+* Required skill
+* Location
+* Start date
+* Duration
+* Status
+
+# REST API Architecture
+
+Representative APIs include:
+
+Authentication:
+
+POST /api/auth/register
+POST /api/auth/login
+
+Products:
+
+GET /api/products
+POST /api/products
+GET /api/products/:id
+PATCH /api/products/:id
+DELETE /api/products/:id
+
+Orders:
+
+POST /api/orders
+GET /api/orders
+GET /api/orders/:id
+
+Rovers:
+
+GET /api/rovers
+GET /api/rovers/:id
+POST /api/rovers/:id/telemetry
+
+Rentals:
+
+POST /api/rentals
+GET /api/rentals
+GET /api/rentals/:id
+PATCH /api/rentals/:id
+
+Labor:
+
+POST /api/labor
+GET /api/labor
+POST /api/labor/:id/apply
+
+Agricultural Products:
+
+POST /api/agricultural-products
+GET /api/agricultural-products
+
+# Performance
+
+The backend uses database-level operations instead of loading and processing large datasets in the frontend.
+
+Relevant indexed fields can include:
+
+* userId
+* sellerId
+* farmerId
+* roverId
+* rentalId
+* status
+* createdAt
+
+Product listings can use pagination:
+
+GET /api/products?page=1&limit=20
+
+Filtering can be performed on the backend:
+
+GET /api/products?category=equipment&minPrice=1000&maxPrice=50000
+
+MongoDB aggregation can be used for platform analytics such as:
+
+* Total sales
+* Total rentals
+* Revenue
+* Active rovers
+* Completed operations
+* Labor requirements
+* Orders
+
+# Error Handling
+
+The backend should use centralized error handling with appropriate HTTP responses:
+
+401 Unauthorized → Invalid authentication
+403 Forbidden → Insufficient permissions
+404 Not Found → Resource does not exist
+400 Bad Request → Invalid request
+
+Raw database errors should not be exposed directly to the frontend.
+
+# Security
+
+Security features include:
+
+* JWT authentication
+* bcrypt password hashing
+* Role-based authorization
+* Protected APIs
+* Server-side authorization
+* Input validation
+* Secure payment verification
+* Restricted resource access
+* Audit logging
+* Environment variables for secrets
+
+Resource ownership must also be verified server-side.
+
+For example, a farmer must not be able to modify another farmer's rental simply by knowing its ID.
+
+# Engineering Highlights
+
+The project demonstrates practical full-stack engineering across several domains:
+
+* Multi-role authentication and authorization
+* Agricultural marketplace architecture
+* E-commerce workflows
+* Online payment integration
+* Agricultural product selling
+* Workforce management
+* Job application workflows
+* Equipment rental
+* Rental scheduling
+* Business-rule validation
+* Autonomous rover integration
+* Telemetry management
+* Rover monitoring
+* Field-operation visualization
+* REST API architecture
+* MongoDB data modeling
+* Database CRUD operations
+* Redux state management
+* Backend authorization
+* API-driven frontend architecture
+
+# Strongest Technical Story
+
+The strongest aspect of UttamKissan is that the autonomous rover is not an isolated hardware project.
+
+It becomes a connected service inside a larger software ecosystem:
+
+Agricultural Marketplace
++
+Labor Platform
++
+Rover Rental
++
+Online Payments
++
+Rover Telemetry
++
+Farmer Dashboard
+
+The platform therefore connects a physical autonomous agricultural machine with a full-stack business application.
+
+# Portfolio Positioning
+
+Present UttamKissan as a **smart agriculture technology platform**, not simply as an agricultural shopping website.
+
+The portfolio should emphasize:
+
+1. The agricultural problem being solved.
+2. The multi-role platform architecture.
+3. The marketplace and payment workflow.
+4. The labor-management system.
+5. The autonomous rover rental workflow.
+6. Rover scheduling and availability validation.
+7. Telemetry-driven rover monitoring.
+8. REST API and MongoDB architecture.
+9. JWT authentication and role-based authorization.
+10. The integration between the physical rover and digital platform.
+
+The rover integration should be the primary differentiator.
+
+# Resume-Style Summary
+
+UttamKissan — Smart Agriculture Marketplace & Autonomous Rover Platform
+
+Built a full-stack smart agriculture platform using React, Next.js, Node.js, Express.js, MongoDB, and Tailwind CSS, enabling farmers to purchase equipment, sell agricultural products, hire labor, and rent autonomous agricultural rovers. Integrated Razorpay payments, JWT authentication, bcrypt, role-based authorization, REST APIs, and MongoDB CRUD operations. Developed rover rental scheduling and monitoring workflows using REST APIs and Fetch API for telemetry updates, field-operation tracking, serpentine navigation visualization, and real-time rover status during tilling, leveling, and seeding operations.
+
+# Portfolio AI Instructions
+
+When generating the portfolio page:
+
+* Present UttamKissan as a smart agriculture ecosystem.
+* Do not reduce the project to a generic MERN e-commerce application.
+* Make the autonomous rover rental and monitoring system the primary differentiator.
+* Explain how marketplace, labor, payments, rover rental, and telemetry work together.
+* Clearly distinguish the four user roles.
+* Highlight the business workflows rather than simply listing technologies.
+* Explain the rover mission lifecycle.
+* Explain the rental-overlap validation as a business-rule example.
+* Highlight JWT, bcrypt, RBAC, REST APIs, MongoDB, Razorpay, Redux Toolkit, and Fetch API where relevant.
+* Explain the relationship between the physical rover and the web platform.
+* Do not claim WebSockets, Socket.IO, Kafka, MQTT, microservices, Kubernetes, Docker, cloud infrastructure, or other technologies unless they are actually implemented in the project.
+* Do not invent performance numbers, user counts, revenue, deployment platforms, or other metrics.
+* Do not turn planned features into completed features.
+* Prioritize actual engineering decisions and workflows over generic technology descriptions.
+* Keep the final portfolio presentation technical, visually understandable, and recruiter-friendly.
